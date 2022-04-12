@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // import { onMessage } from 'webext-bridge'
 // import { createApp } from 'vue'
 // import App from './views/App.vue'
@@ -26,10 +25,7 @@ import { isVuiGhe } from "~/logic/isVuiGhe";
 // })()
 
 if (isVuiGhe(location.href)) {
-  chrome.runtime.sendMessage(
-    {
-      id: "inject-code",
-    },
-    () => {}
-  );
+  browser.runtime.sendMessage({
+    id: "inject-code",
+  });
 }

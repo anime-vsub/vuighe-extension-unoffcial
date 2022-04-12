@@ -8,46 +8,46 @@ if (import.meta.hot) {
   import("./contentScriptHMR");
 }
 
-function onLoadPage() {
-  chrome.tabs.query(
-    {
-      active: true,
-      currentWindow: true,
-    },
-    (tabs) => {
-      const countTabsIsVuiGhe = tabs.reduce((prev, { url }) => {
-        if (isVuiGhe(url)) return prev + 1;
+async function onLoadPage() {
+  const tabs = await browser.tabs.query({
+    active: true,
+    currentWindow: true,
+  });
 
-        return prev;
-      }, 0);
+  const countTabsIsVuiGhe = tabs.reduce((prev, { url }) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    if (isVuiGhe(url!)) return prev + 1;
 
-      if (countTabsIsVuiGhe > 0) {
-        chrome.browserAction.setBadgeBackgroundColor({
-          color: "#f44336",
-        });
-        chrome.browserAction.setBadgeText({
-          text: countTabsIsVuiGhe + "",
-        });
-      } else {
-        chrome.browserAction.setBadgeText({
-          text: "",
-        });
-      }
-    }
-  );
+    return prev;
+  }, 0);
+
+  if (countTabsIsVuiGhe > 0) {
+    browser.browserAction.setBadgeBackgroundColor({
+      color: "#f44336",
+    });
+    browser.browserAction.setBadgeText({
+      text: `${countTabsIsVuiGhe}`,
+    });
+  } else {
+    browser.browserAction.setBadgeText({
+      text: "",
+    });
+  }
 }
 
-chrome.storage.onChanged.addListener(() => {
+browser.storage.onChanged.addListener(() => {
   window.location.reload();
 });
 
-chrome.storage.sync.get("options", (data) => {
+browser.storage.sync.get("options").then((data) => {
   const options = data.options || {};
 
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.id !== "inject-code") return sendResponse();
+  browser.runtime.onMessage.addListener((message, sender) => {
+    if (message.id !== "inject-code" || !sender.tab) return;
 
-    let code = `console.log("%c 🛠💎Tiện ích VuiGhe-UnOffical đamg chạy", "font-size: 40px; color: rgb(52 211 153); text-align: center");`;
+    // eslint-disable-next-line operator-linebreak
+    let code =
+      /* js */ "console.log(\"%c 🛠💎Tiện ích VuiGhe-UnOffical đamg chạy\", \"font-size: 40px; color: rgb(52 211 153); text-align: center\");";
 
     if (options.active_VIP) {
       code += `Object.defineProperty(_GLOBAL, "_IS_VIP", {
@@ -180,23 +180,17 @@ if (document.readyState === "loading") {
         } else {
           onReady()
         }
-      })()`
+      })()`;
     }
     code += ";";
 
-    chrome.tabs.executeScript(
-      sender.tab.id,
-      {
-        code: `const script = document.createElement("script");
+    browser.tabs.executeScript(sender.tab.id, {
+      code: `const script = document.createElement("script");
 script.innerHTML = ${JSON.stringify(code)};
 (document.head||document.documentElement).prepend(script);
  script.remove()`,
-      },
-      () => {}
-    );
-
-    sendResponse();
+    });
   });
 });
-chrome.tabs.onUpdated.addListener(onLoadPage);
-chrome.tabs.onActivated.addListener(onLoadPage);
+browser.tabs.onUpdated.addListener(onLoadPage);
+browser.tabs.onActivated.addListener(onLoadPage);

@@ -1,3 +1,13 @@
 {
-  "extends": "@antfu"
+  "extends": "@antfu",
+  "rules": {
+    "quotes": ["warn", "double"],
+    "@typescript-eslint/semi": "off",
+    "semi": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
+    "arrow-parens": "off",
+    "comma-dangle": "off",
+    "brace-style": "off",
+    "tobject-curly-newline": "off"
+  }
 }
