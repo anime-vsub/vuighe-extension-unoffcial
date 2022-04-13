@@ -1,12 +1,21 @@
 <template>
-  <main class="w-[300px] px-4 pb-5 text-gray-700">
+  <main class="dark:bg-[#0f172a] w-[300px] px-4 pb-5 text-gray-700 dark:text-[#e2e8f0]">
     <div
-      class="header flex items-center justify-between py-2 border-b border-slate-200"
+      class="header flex items-center justify-between py-2 border-b border-slate-200 dark:border-[#a8a29e]"
     >
       <Logo />
       <h2 class="text-lg font-semibold flex items-center">
+        <a href="https://github.com/tachibana-shin/vuighe.net-extension-unoffcial" target="_blank" class="mr-1" title="Source Code">
+          <logos-github-icon 
+            class="path-fill-inherit"
+            fill="currentColor"
+          />
+        </a>
+        <a href="https://twitter.com/tachib_shin" target="_blank" title="@tachib_shin">
+          <logos-twitter />
+        </a>
         <flat-color-icons-flash-on
-          :fill="tabIsVuiGhe ? '#f01c0c' : '#6666'"
+          :fill="tabIsVuiGhe ? 'rgb(255, 193, 7)' : '#6666'"
           width="29"
           height="29"
           class="path-fill-inherit"
@@ -30,7 +39,7 @@
             <Switch v-model="options.active_VIP" />
           </div>
           <small
-            class="text-slate-500"
+            class="dark:text-[#94a3b8] text-[#666666]"
           >Kích hoạt chế độ VIP để không có quảng cáo và xem tốc độ nhanh
             hơn</small>
         </li>
@@ -43,7 +52,7 @@
             <Switch v-model="options.keybinding_window" />
           </div>
           <small
-            class="text-slate-500"
+            class="dark:text-[#94a3b8] text-[#666666]"
           >Kích hoạt các phím tắt ngay cả khi focus vào trình phát</small>
         </li>
         <li>
@@ -81,7 +90,7 @@
             </Select>
           </div>
           <small
-            class="text-slate-500"
+            class="dark:text-[#94a3b8] text-[#666666]"
           >Đặt chất lượng phát mặc định mỗi khi bạn xem anime</small>
         </li>
         <li>
@@ -93,7 +102,7 @@
             <Switch v-model="options.remind_pause" />
           </div>
           <small
-            class="text-slate-500"
+            class="dark:text-[#94a3b8] text-[#666666]"
           >Sau 1h15p không có tương tác sẽ tạm dừng anime đề phòng ngủ
             quên</small>
         </li>
@@ -106,7 +115,7 @@
       style="transform: translate(-50%, -50%)"
     >
       <span
-        class="text-slate-500"
+        class="dark:text-[#94a3b8] text-[#666666]"
       >Tiện ích này chỉ hoạt động trên trang web
         <a
           class="text-blue-600 font-medium"
@@ -179,7 +188,7 @@ browser.tabs.query({
 
 <style lang="scss" scoped>
 [disabled="true"] {
-  opacity: 0.4;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 .list-options {
@@ -201,12 +210,16 @@ browser.tabs.query({
     }
     small {
       font-size: 12px;
-      color: #666666;
+      // color: #666666;
       line-height: 1.4;
     }
   }
 }
 .path-fill-inherit::v-deep(path) {
   fill: inherit;
+}
+
+a {
+  display: inline-flex;
 }
 </style>

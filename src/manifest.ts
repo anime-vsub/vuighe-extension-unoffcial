@@ -14,22 +14,22 @@ export async function getManifest() {
     version: pkg.version,
     description: pkg.description,
     browser_action: {
-      default_icon: "./assets/icon-512.png",
+      default_icon: "./assets/vuighe-512-trans.png",
       default_popup: "./dist/popup/index.html",
     },
-    options_ui: {
-      page: "./dist/options/index.html",
-      open_in_tab: true,
-      chrome_style: false,
-    },
+    // options_ui: {
+    //   page: "./dist/options/index.html",
+    //   open_in_tab: true,
+    //   chrome_style: false,
+    // },
     background: {
       page: "./dist/background/index.html",
       persistent: false,
     },
     icons: {
-      16: "./assets/icon-512.png",
-      48: "./assets/icon-512.png",
-      128: "./assets/icon-512.png",
+      16: "./assets/vuighe-512-trans.png",
+      48: "./assets/vuighe-512-trans.png",
+      128: "./assets/vuighe-512-trans.png",
     },
     permissions: ["tabs", "storage", "activeTab", "http://*/", "https://*/"],
     content_scripts: [

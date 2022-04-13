@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="select" @click.prevent.stop="showOptions = !showOptions">
+    <div class="select bg-[#e9e9eb] dark:bg-[#475569] border-[#ced4da] dark:border-[#393d40]" @click.prevent.stop="showOptions = !showOptions">
       <template v-if="$slots.value">
         <slot name="value" :option="optionSelected" />
       </template>
@@ -11,7 +11,7 @@
     </div>
     <ul
       v-show="showOptions"
-      class="options"
+      class="options bg-[#e9e9eb] dark:bg-[#475569] border-[#ced4da] dark:border-[#393d40]"
       @click.prevent.stop="closeAfterSelect ? (showOptions = false) : void 0"
     >
       <li
@@ -76,7 +76,7 @@ watch(showOptions, (value) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(233, 233, 235);
+  // background-color: rgb(233, 233, 235);
   padding: 2px 6px; //4 8
   border-radius: 4px;
   border: 1px solid #ced4da;
@@ -94,7 +94,7 @@ watch(showOptions, (value) => {
   width: 100%;
   top: 100%;
   left: 0;
-  background-color: white;
+  // background-color: white;
   border: 1px solid #ced4da;
   box-shadow: 0 1px 5px #0003, 0 2px 2px #00000024, 0 3px 1px -2px #0000001f;
   // display: none;

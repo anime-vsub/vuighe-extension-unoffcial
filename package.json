@@ -1,8 +1,8 @@
 {
-  "name": "vitesse-webext",
-  "displayName": "Vitesse WebExt",
+  "name": "VuiGhe",
+  "displayName": "VuiGhe",
   "version": "0.0.1",
-  "description": "[description]",
+  "description": "Tiện ích không chính thức cho website vuighe.net",
   "private": true,
   "scripts": {
     "dev": "npm run clear && cross-env NODE_ENV=development run-p dev:*",

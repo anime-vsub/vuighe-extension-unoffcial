@@ -8,32 +8,32 @@ if (import.meta.hot) {
   import("./contentScriptHMR");
 }
 
-async function onLoadPage() {
-  const tabs = await browser.tabs.query({
-    active: true,
-    currentWindow: true,
-  });
+// async function onLoadPage() {
+//   const tabs = await browser.tabs.query({
+//     active: true,
+//     currentWindow: true,
+//   });
 
-  const countTabsIsVuiGhe = tabs.reduce((prev, { url }) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    if (isVuiGhe(url!)) return prev + 1;
+//   const countTabsIsVuiGhe = tabs.reduce((prev, { url }) => {
+//     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+//     if (isVuiGhe(url!)) return prev + 1;
 
-    return prev;
-  }, 0);
+//     return prev;
+//   }, 0);
 
-  if (countTabsIsVuiGhe > 0) {
-    browser.browserAction.setBadgeBackgroundColor({
-      color: "#f44336",
-    });
-    browser.browserAction.setBadgeText({
-      text: `${countTabsIsVuiGhe}`,
-    });
-  } else {
-    browser.browserAction.setBadgeText({
-      text: "",
-    });
-  }
-}
+//   if (countTabsIsVuiGhe > 0) {
+//     browser.browserAction.setBadgeBackgroundColor({
+//       color: "#f44336",
+//     });
+//     browser.browserAction.setBadgeText({
+//       text: `${countTabsIsVuiGhe}`,
+//     });
+//   } else {
+//     browser.browserAction.setBadgeText({
+//       text: "",
+//     });
+//   }
+// }
 
 browser.storage.onChanged.addListener(() => {
   window.location.reload();
@@ -220,5 +220,5 @@ browser.storage.sync.get("options").then((data) => {
     });
   });
 });
-browser.tabs.onUpdated.addListener(onLoadPage);
-browser.tabs.onActivated.addListener(onLoadPage);
+// browser.tabs.onUpdated.addListener(onLoadPage);
+// browser.tabs.onActivated.addListener(onLoadPage);
