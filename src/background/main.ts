@@ -214,7 +214,7 @@ browser.storage.sync.get("options").then((data) => {
 
     browser.tabs.executeScript(sender.tab.id, {
       code: /* js */ `const script = document.createElement("script");
-        script.innerHTML = ${JSON.stringify(code)};
+        script.text = ${JSON.stringify(code)};
         (document.head||document.documentElement).prepend(script);
         script.remove()`,
     });
