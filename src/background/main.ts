@@ -55,7 +55,25 @@ browser.storage.sync.get("options").then((data) => {
           return true;
         },
         set(val) {}
-      })`;
+      });
+      (() => {
+        function createUserVip() {
+          const userVip = document.createElement("span");
+          userVip.className = "user-vip";
+          userVip.textContent = "VIP";
+
+          document.querySelector(".navbar-user-header")?.appendChild(userVip);
+          document.removeEventListener("DOMContentLoaded", createUserVip);
+          window.removeEventListener("load", createUserVip);
+        }
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", createUserVip);
+          window.addEventListener("load", createUserVip);
+        } else {
+          createUserVip();
+        }
+      });
+      `;
     }
     if (options.keybinding_window) {
       code += /* js */`;(() => {
