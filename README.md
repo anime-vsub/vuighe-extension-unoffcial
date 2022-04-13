@@ -38,10 +38,4 @@ And then pack files under `extension`, you can upload `extension.crx` or `extens
 
 ## Credits
 
-![](https://user-images.githubusercontent.com/11247099/127029137-6b5ad5db-76c4-4061-86ff-489911a8adfb.png)
-
-This template is originally made for the [volta.net](https://volta.net) browser extension.
-
-## Variations
-
-This is a variant of [Vitesse](https://github.com/antfu/vitesse), check out the [full variations list](https://github.com/antfu/vitesse#variations).
+Created by [@tachib_shin](https://twitter.com/tachib_shin) make time free.
