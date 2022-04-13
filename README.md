@@ -1,5 +1,7 @@
 # Extension VuiGhe
-Đây là tiện ích mở rộng không chính thức cho website vuighe.net
+This is an open width is not precision for website vuighe.net
+
+Error? [Report now](https://github.com/tachibana-shin/vuighe-extension-unoffcial/issues)
 
 ### Setup
 
