@@ -72,7 +72,7 @@ browser.storage.sync.get("options").then((data) => {
         } else {
           createUserVip();
         }
-      });
+      })();
       `;
     }
     if (options.keybinding_window) {

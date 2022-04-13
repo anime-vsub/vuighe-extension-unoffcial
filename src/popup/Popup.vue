@@ -169,8 +169,11 @@ const optionsQualityDefault = [
 ];
 
 const tabIsVuiGhe = ref<boolean>(false);
-browser.tabs.getCurrent().then((tab) => {
-  tabIsVuiGhe.value = isVuiGhe(tab.url || "");
+browser.tabs.query({
+  active: true,
+  currentWindow: true,
+}).then(([tab]) => {
+  tabIsVuiGhe.value = !!tab && isVuiGhe(tab.url || "");
 });
 </script>
 
